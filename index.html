@@ -3,196 +3,389 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Дорожная карта · Python Backend → AI · 2026–2030</title>
+<title>Roadmap 2026–2030 · Python Backend → AI</title>
 <style>
-  :root {
-    --accent: #1A56DB;
-    --accent-lt: #EBF2FF;
-    --dark: #1E293B;
-    --muted: #64748B;
-    --border: #E2E8F0;
-    --light: #F8FAFC;
-    --white: #ffffff;
-    --green: #14532D;
-    --green-bg: #DCFCE7;
-    --green-bd: #16A34A;
-    --warn: #78350F;
-    --warn-bg: #FEF3C7;
-    --warn-bd: #D97706;
-    --blue-bg: #DBEAFE;
-    --blue-bd: #2563EB;
-    --blue-dk: #1E3A5F;
-    --radius: 10px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: var(--light);
-    color: var(--dark);
-    line-height: 1.65;
-    font-size: 16px;
-  }
+/* ── RESET & BASE ─────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  background:#0F172A;
+  color:#E2E8F0;
+  line-height:1.65;
+  min-height:100vh;
+}
 
-  /* ── NAV ── */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 24px;
-  }
-  nav .inner {
-    max-width: 960px; margin: 0 auto;
-    display: flex; align-items: center; gap: 6px;
-    height: 52px; overflow-x: auto; white-space: nowrap;
-  }
-  nav a {
-    color: var(--muted); text-decoration: none;
-    font-size: 13px; font-weight: 500;
-    padding: 4px 10px; border-radius: 6px;
-    transition: all .15s;
-  }
-  nav a:hover, nav a.active { color: var(--accent); background: var(--accent-lt); }
-  nav .logo { font-weight: 700; color: var(--accent); font-size: 15px; margin-right: 12px; flex-shrink:0; }
+/* ── TOKENS ───────────────────────────────────────────── */
+:root{
+  --bg:       #0F172A;
+  --bg2:      #1E293B;
+  --bg3:      #293548;
+  --border:   #334155;
+  --accent:   #3B82F6;
+  --accent2:  #60A5FA;
+  --accent-glow: rgba(59,130,246,.25);
+  --muted:    #94A3B8;
+  --text:     #E2E8F0;
+  --text2:    #CBD5E1;
+  --green:    #22C55E;
+  --green-bg: rgba(34,197,94,.1);
+  --green-bd: rgba(34,197,94,.35);
+  --warn:     #F59E0B;
+  --warn-bg:  rgba(245,158,11,.08);
+  --warn-bd:  rgba(245,158,11,.35);
+  --blue-bg:  rgba(59,130,246,.08);
+  --blue-bd:  rgba(59,130,246,.3);
+  --r:        10px;
+  --r2:       7px;
+}
 
-  /* ── LAYOUT ── */
-  main { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+/* ── SCROLLBAR ────────────────────────────────────────── */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 
-  /* ── HERO ── */
-  .hero {
-    text-align: center;
-    padding: 64px 24px 48px;
-    background: linear-gradient(135deg, var(--accent) 0%, #3B6FD4 100%);
-    color: white;
-  }
-  .hero h1 { font-size: clamp(28px, 5vw, 48px); font-weight: 800; line-height: 1.15; margin-bottom: 12px; }
-  .hero .sub { font-size: clamp(16px, 2.5vw, 20px); opacity: .85; margin-bottom: 8px; }
-  .hero .meta { font-size: 14px; opacity: .65; font-style: italic; }
-  .hero-tags { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
-  .hero-tag {
-    background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
-    color: white; border-radius: 20px; padding: 5px 14px; font-size: 13px; font-weight: 500;
-  }
+/* ── NAV ──────────────────────────────────────────────── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(15,23,42,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 20px;
+}
+.nav-inner{
+  max-width:1040px;margin:0 auto;
+  display:flex;align-items:center;gap:4px;
+  height:50px;overflow-x:auto;white-space:nowrap;
+}
+.nav-logo{
+  font-weight:800;font-size:14px;color:var(--accent);
+  margin-right:14px;flex-shrink:0;letter-spacing:-.3px;
+}
+nav a{
+  color:var(--muted);text-decoration:none;
+  font-size:12.5px;font-weight:500;
+  padding:4px 10px;border-radius:6px;
+  transition:all .15s;flex-shrink:0;
+}
+nav a:hover{color:var(--text);background:var(--bg3)}
+nav a.active{color:var(--accent);background:var(--blue-bg)}
 
-  /* ── NOTICE BOX ── */
-  .notice {
-    border-radius: var(--radius);
-    border-left: 4px solid;
-    padding: 16px 20px;
-    margin: 24px 0;
-    font-size: 15px;
-  }
-  .notice.warn { background: var(--warn-bg); border-color: var(--warn-bd); color: var(--warn); }
-  .notice.green { background: var(--green-bg); border-color: var(--green-bd); color: var(--green); }
-  .notice.blue { background: var(--blue-bg); border-color: var(--blue-bd); color: var(--blue-dk); }
-  .notice strong { display: block; margin-bottom: 6px; }
+/* ── LAYOUT ───────────────────────────────────────────── */
+main{max-width:1040px;margin:0 auto;padding:32px 20px 100px}
 
-  /* ── SECTION HEADERS ── */
-  .section-badge {
-    background: linear-gradient(135deg, var(--accent), #3B6FD4);
-    color: white; border-radius: var(--radius);
-    padding: 24px 28px; margin: 48px 0 28px;
-  }
-  .section-badge h2 { font-size: clamp(20px, 3vw, 26px); font-weight: 700; margin-bottom: 6px; }
-  .section-badge .sub { font-size: 14px; opacity: .8; font-style: italic; }
+/* ── HERO ─────────────────────────────────────────────── */
+.hero{
+  background:linear-gradient(135deg,#1E3A5F 0%,#1E293B 60%,#0F172A 100%);
+  border:1px solid var(--border);border-radius:16px;
+  padding:48px 36px 40px;margin-bottom:32px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 80% 20%,rgba(59,130,246,.15) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero h1{
+  font-size:clamp(24px,4.5vw,44px);font-weight:800;
+  line-height:1.1;margin-bottom:10px;
+  background:linear-gradient(135deg,#fff 0%,var(--accent2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero .sub{font-size:clamp(14px,2vw,17px);color:var(--muted);margin-bottom:6px}
+.hero .meta{font-size:12px;color:#475569;font-style:italic}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.hero-tag{
+  background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);
+  color:var(--accent2);border-radius:20px;padding:4px 12px;
+  font-size:12px;font-weight:600;letter-spacing:.3px;
+}
 
-  /* ── TYPOGRAPHY ── */
-  h1.page-title { font-size: clamp(22px, 3.5vw, 30px); font-weight: 700; color: var(--dark); margin: 48px 0 16px; padding-bottom: 10px; border-bottom: 2px solid var(--border); }
-  h3.season { font-size: 17px; font-weight: 700; color: var(--accent); margin: 28px 0 10px; }
-  p { margin-bottom: 12px; color: var(--dark); }
+/* ── GLOBAL PROGRESS PANEL ────────────────────────────── */
+.progress-panel{
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);
+  padding:24px 28px;margin-bottom:32px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;
+}
+@media(max-width:640px){.progress-panel{grid-template-columns:1fr;gap:16px;text-align:center}}
 
-  /* ── BULLETS ── */
-  ul.items { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-  ul.items li {
-    display: flex; gap: 10px; align-items: flex-start;
-    background: white; border: 1px solid var(--border);
-    border-radius: 8px; padding: 10px 14px; font-size: 15px;
-  }
-  ul.items li::before { content: "•"; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-  ul.items li strong { color: var(--dark); }
+.ring-wrap{position:relative;width:90px;height:90px;flex-shrink:0}
+.ring-wrap svg{width:90px;height:90px;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--border);stroke-width:7}
+.ring-fg{
+  fill:none;stroke:var(--accent);stroke-width:7;
+  stroke-linecap:round;
+  stroke-dasharray:239;stroke-dashoffset:239;
+  transition:stroke-dashoffset .6s cubic-bezier(.4,0,.2,1),stroke .4s;
+  filter:drop-shadow(0 0 4px rgba(59,130,246,.5));
+}
+.ring-text{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.ring-pct{font-size:18px;font-weight:800;color:var(--text);line-height:1}
+.ring-lbl{font-size:10px;color:var(--muted);font-weight:500;margin-top:2px}
 
-  /* ── TABLES ── */
-  .tbl-wrap { overflow-x: auto; margin: 16px 0 24px; border-radius: var(--radius); border: 1px solid var(--border); }
-  table { width: 100%; border-collapse: collapse; background: white; font-size: 14px; }
-  thead tr { background: var(--accent); color: white; }
-  thead th { padding: 11px 14px; text-align: left; font-weight: 600; font-size: 13px; }
-  tbody tr:nth-child(even) { background: var(--light); }
-  tbody td { padding: 10px 14px; border-top: 1px solid var(--border); vertical-align: top; }
-  tbody td:first-child { font-weight: 600; }
+.progress-stats{display:flex;flex-direction:column;gap:8px}
+.progress-title{font-size:17px;font-weight:700;color:var(--text)}
+.progress-sub{font-size:13px;color:var(--muted)}
+.prog-bar-wrap{margin-top:6px}
+.prog-label{display:flex;justify-content:space-between;margin-bottom:5px}
+.prog-label span{font-size:12px;color:var(--muted);font-weight:500}
+.prog-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.prog-bar-fill{
+  height:100%;border-radius:3px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transition:width .5s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 0 8px var(--accent-glow);
+}
 
-  /* ── PRINCIPLES ── */
-  .principles { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
-  .principle {
-    display: flex; gap: 16px; align-items: flex-start;
-    background: white; border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 16px 18px;
-  }
-  .principle .num {
-    width: 32px; height: 32px; border-radius: 50%;
-    background: var(--accent); color: white;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 14px; flex-shrink: 0;
-  }
-  .principle-body strong { color: var(--dark); display: block; margin-bottom: 3px; font-size: 15px; }
-  .principle-body span { color: var(--muted); font-size: 14px; }
+.progress-meta{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+@media(max-width:640px){.progress-meta{align-items:center}}
+.stat-pill{
+  background:var(--bg3);border:1px solid var(--border);border-radius:8px;
+  padding:8px 14px;text-align:center;
+}
+.stat-pill .val{font-size:22px;font-weight:800;color:var(--accent);line-height:1}
+.stat-pill .lbl{font-size:10px;color:var(--muted);font-weight:500;margin-top:2px}
 
-  /* ── LEET GRID ── */
-  .leet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin: 16px 0; }
-  .leet-card {
-    background: white; border: 1px solid var(--border); border-radius: 8px;
-    padding: 12px 14px;
-  }
-  .leet-card .priority { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
-  .leet-card .cat { font-size: 14px; font-weight: 600; color: var(--dark); }
-  .leet-card .meta { font-size: 12px; color: var(--muted); margin-top: 4px; }
+/* ── YEAR PROGRESS BARS ───────────────────────────────── */
+.year-progress-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:32px;
+}
+@media(max-width:640px){.year-progress-row{grid-template-columns:repeat(2,1fr)}}
+.year-prog-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);
+  padding:14px;transition:border-color .2s;
+}
+.year-prog-card:hover{border-color:var(--accent)}
+.year-prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.year-prog-title{font-size:12px;font-weight:700;color:var(--text2)}
+.year-prog-pct{font-size:13px;font-weight:800;color:var(--accent)}
+.year-prog-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.year-prog-fill{
+  height:100%;border-radius:3px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transition:width .5s ease;
+}
 
-  /* ── PORTFOLIO CARDS ── */
-  .portfolio { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin: 16px 0; }
-  .port-card {
-    background: white; border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 16px; display: flex; flex-direction: column; gap: 6px;
-  }
-  .port-card .when { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .5px; }
-  .port-card .name { font-size: 15px; font-weight: 700; color: var(--dark); }
-  .port-card .desc { font-size: 13px; color: var(--muted); }
+/* ── NOTICE BOXES ─────────────────────────────────────── */
+.notice{
+  border-left:3px solid;border-radius:var(--r2);
+  padding:14px 18px;margin:20px 0;font-size:14px;
+  line-height:1.6;
+}
+.notice strong{display:block;margin-bottom:5px;font-size:14px}
+.notice.warn{background:var(--warn-bg);border-color:var(--warn);color:#FCD34D}
+.notice.warn strong{color:#FDE68A}
+.notice.green{background:var(--green-bg);border-color:var(--green);color:#86EFAC}
+.notice.green strong{color:#BBF7D0}
+.notice.blue{background:var(--blue-bg);border-color:var(--accent);color:var(--accent2)}
+.notice.blue strong{color:#BFDBFE}
 
-  /* ── RESCUE TABLE ── */
-  .rescue { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
-  .rescue-row {
-    display: grid; grid-template-columns: 1fr 1.6fr; gap: 0;
-    border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: white;
-  }
-  .rescue-row .situation { padding: 12px 14px; font-weight: 600; font-size: 14px; background: var(--light); border-right: 1px solid var(--border); }
-  .rescue-row .action { padding: 12px 14px; font-size: 14px; color: var(--muted); }
-  @media (max-width: 560px) {
-    .rescue-row { grid-template-columns: 1fr; }
-    .rescue-row .situation { border-right: none; border-bottom: 1px solid var(--border); }
-  }
+/* ── SECTION BADGE ────────────────────────────────────── */
+.section-badge{
+  background:linear-gradient(135deg,#1D3461 0%,#1E293B 100%);
+  border:1px solid rgba(59,130,246,.3);border-radius:var(--r);
+  padding:22px 26px;margin:44px 0 24px;
+  position:relative;overflow:hidden;
+}
+.section-badge::after{
+  content:'';position:absolute;right:-20px;top:-20px;
+  width:100px;height:100px;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,.12),transparent 70%);
+}
+.section-badge-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.section-badge h2{font-size:clamp(18px,2.8vw,24px);font-weight:800;color:#fff;margin-bottom:5px}
+.section-badge .sub{font-size:13px;color:#93C5FD;font-style:italic}
+.section-ring{flex-shrink:0}
+.section-ring svg{width:56px;height:56px;transform:rotate(-90deg)}
+.section-ring .sr-bg{fill:none;stroke:rgba(255,255,255,.1);stroke-width:5}
+.section-ring .sr-fg{
+  fill:none;stroke:var(--accent2);stroke-width:5;
+  stroke-linecap:round;stroke-dasharray:157;stroke-dashoffset:157;
+  transition:stroke-dashoffset .5s ease;
+}
+.section-ring-inner{position:relative}
+.section-ring-pct{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:#fff;
+}
 
-  /* ── GOAL TABLE ── */
-  .goal-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin: 16px 0; }
-  @media (max-width: 560px) { .goal-grid { grid-template-columns: 1fr; } }
-  .goal-card {
-    background: white; border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 16px; display: flex; gap: 14px; align-items: flex-start;
-  }
-  .goal-card .yr { font-size: 28px; font-weight: 800; color: var(--accent); line-height: 1; flex-shrink: 0; }
-  .goal-card .txt { font-size: 14px; color: var(--muted); line-height: 1.5; }
-  .goal-card .txt strong { display: block; color: var(--dark); margin-bottom: 3px; }
+/* ── PAGE TITLE ───────────────────────────────────────── */
+h1.pt{
+  font-size:clamp(18px,3vw,26px);font-weight:800;color:var(--text);
+  margin:44px 0 14px;padding-bottom:10px;
+  border-bottom:1px solid var(--border);
+}
 
-  /* ── DIVIDER ── */
-  hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+/* ── SEASON HEADER ────────────────────────────────────── */
+h3.season{
+  font-size:15px;font-weight:700;color:var(--accent2);
+  margin:24px 0 10px;
+  display:flex;align-items:center;gap:8px;
+}
+h3.season::after{content:'';flex:1;height:1px;background:var(--border)}
 
-  /* ── FOOTER ── */
-  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 32px 24px; border-top: 1px solid var(--border); }
+/* ── TASK LIST ────────────────────────────────────────── */
+.task-list{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+
+.task-item{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);
+  padding:11px 14px;cursor:pointer;
+  transition:background .15s,border-color .15s,transform .1s;
+  user-select:none;
+}
+.task-item:hover{background:var(--bg3);border-color:#475569;transform:translateX(2px)}
+.task-item.done{background:rgba(34,197,94,.05);border-color:var(--green-bd)}
+.task-item.done:hover{background:rgba(34,197,94,.08)}
+
+.task-check{
+  width:20px;height:20px;border-radius:5px;
+  border:2px solid var(--border);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;margin-top:1px;
+}
+.task-item.done .task-check{
+  background:var(--green);border-color:var(--green);
+}
+.task-check svg{
+  width:12px;height:12px;stroke:white;
+  opacity:0;transform:scale(.5);
+  transition:all .2s cubic-bezier(.175,.885,.32,1.275);
+}
+.task-item.done .task-check svg{opacity:1;transform:scale(1)}
+
+.task-text{font-size:14px;color:var(--text2);line-height:1.5;transition:color .2s}
+.task-text strong{color:var(--text);font-weight:600}
+.task-item.done .task-text{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(148,163,184,.4)}
+.task-item.done .task-text strong{color:var(--muted)}
+
+/* ── TABLE ────────────────────────────────────────────── */
+.tbl-wrap{overflow-x:auto;margin:14px 0 20px;border-radius:var(--r);border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;background:var(--bg2);font-size:13px}
+thead tr{background:linear-gradient(135deg,#1D3461,#1E3A5F)}
+thead th{padding:10px 14px;text-align:left;font-weight:700;font-size:12px;color:#93C5FD;letter-spacing:.3px}
+tbody tr:nth-child(even){background:rgba(255,255,255,.02)}
+tbody tr:hover{background:var(--bg3)}
+tbody td{padding:9px 14px;border-top:1px solid var(--border);vertical-align:top;color:var(--text2)}
+tbody td:first-child{font-weight:600;color:var(--text)}
+
+/* ── PORTFOLIO GRID ───────────────────────────────────── */
+.portfolio{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:14px 0}
+.port-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);
+  padding:15px;display:flex;flex-direction:column;gap:5px;
+  transition:border-color .2s,transform .15s;
+}
+.port-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.port-when{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.8px}
+.port-name{font-size:14px;font-weight:700;color:var(--text)}
+.port-desc{font-size:12px;color:var(--muted)}
+
+/* ── LEET GRID ────────────────────────────────────────── */
+.leet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin:14px 0}
+.leet-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);
+  padding:12px 14px;transition:border-color .2s;
+}
+.leet-card:hover{border-color:var(--accent)}
+.leet-priority{font-size:11px;font-weight:700;margin-bottom:3px}
+.leet-cat{font-size:13px;font-weight:700;color:var(--text)}
+.leet-meta{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* ── PRINCIPLES ───────────────────────────────────────── */
+.principles{display:flex;flex-direction:column;gap:10px;margin:16px 0}
+.principle{
+  display:flex;gap:16px;align-items:flex-start;
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);
+  padding:15px 18px;transition:border-color .2s;
+}
+.principle:hover{border-color:var(--accent)}
+.prin-num{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--accent);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:13px;flex-shrink:0;
+  box-shadow:0 0 12px var(--accent-glow);
+}
+.prin-strong{display:block;font-weight:700;color:var(--text);font-size:14px;margin-bottom:3px}
+.prin-rest{color:var(--muted);font-size:13px}
+
+/* ── GOAL GRID ────────────────────────────────────────── */
+.goal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}
+@media(max-width:540px){.goal-grid{grid-template-columns:1fr}}
+.goal-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);
+  padding:16px;display:flex;gap:14px;align-items:flex-start;
+  transition:border-color .2s;
+}
+.goal-card:hover{border-color:var(--accent)}
+.goal-yr{font-size:26px;font-weight:900;color:var(--accent);line-height:1;flex-shrink:0;opacity:.9}
+.goal-txt strong{display:block;color:var(--text);font-size:13px;margin-bottom:3px}
+.goal-txt span{color:var(--muted);font-size:12.5px}
+
+/* ── RESCUE ───────────────────────────────────────────── */
+.rescue{display:flex;flex-direction:column;gap:6px;margin:14px 0}
+.rescue-row{
+  display:grid;grid-template-columns:1fr 1.6fr;
+  border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;
+  background:var(--bg2);
+}
+.rescue-situation{
+  padding:11px 14px;font-weight:600;font-size:13px;
+  background:var(--bg3);border-right:1px solid var(--border);color:var(--text2);
+}
+.rescue-action{padding:11px 14px;font-size:13px;color:var(--muted)}
+@media(max-width:540px){
+  .rescue-row{grid-template-columns:1fr}
+  .rescue-situation{border-right:none;border-bottom:1px solid var(--border)}
+}
+
+/* ── RESET BUTTON ─────────────────────────────────────── */
+.reset-wrap{margin-top:40px;text-align:center}
+.btn-reset{
+  background:transparent;border:1px solid var(--border);color:var(--muted);
+  padding:8px 20px;border-radius:6px;font-size:13px;cursor:pointer;
+  transition:all .2s;font-family:inherit;
+}
+.btn-reset:hover{border-color:#EF4444;color:#EF4444;background:rgba(239,68,68,.05)}
+
+/* ── CONFETTI ─────────────────────────────────────────── */
+.confetti-piece{
+  position:fixed;pointer-events:none;
+  width:8px;height:8px;border-radius:2px;
+  animation:confetti-fall 2s ease-in forwards;
+  z-index:9999;
+}
+@keyframes confetti-fall{
+  0%{transform:translateY(-20px) rotate(0deg);opacity:1}
+  100%{transform:translateY(100vh) rotate(720deg);opacity:0}
+}
+
+/* ── TOAST ────────────────────────────────────────────── */
+.toast{
+  position:fixed;bottom:24px;right:24px;
+  background:var(--bg2);border:1px solid var(--green-bd);
+  color:var(--green);padding:12px 18px;border-radius:var(--r);
+  font-size:13px;font-weight:600;z-index:9998;
+  animation:toast-in .3s ease;box-shadow:0 8px 32px rgba(0,0,0,.4);
+}
+.toast.hide{animation:toast-out .3s ease forwards}
+@keyframes toast-in{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes toast-out{from{transform:translateY(0);opacity:1}to{transform:translateY(20px);opacity:0}}
+
+hr{border:none;border-top:1px solid var(--border);margin:36px 0}
+footer{text-align:center;color:#475569;font-size:12px;padding:28px 20px;border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="inner">
-    <span class="logo">🗺 Roadmap 4.0</span>
+  <div class="nav-inner">
+    <span class="nav-logo">⚡ Roadmap 4.0</span>
+    <a href="#progress">Прогресс</a>
     <a href="#idea">Идея</a>
     <a href="#y1">1 курс</a>
     <a href="#y2">2 курс</a>
@@ -205,10 +398,13 @@
   </div>
 </nav>
 
+<main>
+
+<!-- HERO -->
 <div class="hero">
   <h1>Python Backend → AI Engineering</h1>
-  <p class="sub">Дорожная карта 2026 – 2030</p>
-  <p class="meta">Версия 4.0 · Вуз + самообучение параллельно</p>
+  <p class="sub">Дорожная карта 2026 – 2030 · Версия 4.0</p>
+  <p class="meta">Вуз + самообучение параллельно · Нажимай на задачи чтобы отмечать прогресс</p>
   <div class="hero-tags">
     <span class="hero-tag">Python</span>
     <span class="hero-tag">Backend</span>
@@ -218,315 +414,495 @@
   </div>
 </div>
 
-<main>
-
-  <div class="notice warn" style="margin-top:32px">
-    <strong>📌 Это ориентир, а не расписание поездов</strong>
-    Какой-то проект бросишь. Docker поймёшь не с первого раза. Стажировку найдёшь со второй попытки. FastAPI перепишешь трижды. Это абсолютно нормально. Важнее сохранять последовательность и двигаться вперёд — пусть медленно.
-  </div>
-
-  <!-- ИДЕЯ -->
-  <h1 class="page-title" id="idea">Главная идея: не «учить технологии» — делать продукты</h1>
-  <p>К 2030 году ИИ пишет шаблонный код за секунды. Работодателю нужен человек, который берёт бизнес-задачу и доводит её до работающего сервиса в продакшене. Каждый год — не «выучить технологию», а <strong>сделать продукт</strong>.</p>
-
-  <div class="goal-grid">
-    <div class="goal-card"><div class="yr">01</div><div class="txt"><strong>1 курс</strong>Научиться программировать — первые рабочие приложения</div></div>
-    <div class="goal-card"><div class="yr">02</div><div class="txt"><strong>2 курс</strong>Делать полноценные сервисы — получить стажировку</div></div>
-    <div class="goal-card"><div class="yr">03</div><div class="txt"><strong>3 курс</strong>Поддерживать продукт с реальными пользователями</div></div>
-    <div class="goal-card"><div class="yr">04</div><div class="txt"><strong>4 курс</strong>Проектировать масштабируемые системы + собеседования</div></div>
-  </div>
-
-  <h1 class="page-title">Почему Python + Backend, с выходом в AI</h1>
-  <p>Python — единственный язык, одинаково нужный в бэкенде, data-инжиниринге и AI. К 2030 году ожидается острый дефицит AI-специалистов: в России сейчас ~57 тыс. специалистов, нужно ещё 89 тыс. Ты выпускаешься прямо в этот дефицит.</p>
-
-  <div class="tbl-wrap">
-    <table>
-      <thead><tr><th>Направление</th><th>Спрос к 2030</th><th>Почему</th></tr></thead>
-      <tbody>
-        <tr><td>ML / AI Engineering</td><td>🔺 Пик дефицита</td><td>Рынок не успевает закрывать вакансии</td></tr>
-        <tr><td>Backend (Go / Java / Python)</td><td>🔺 Высокий</td><td>Основа любого продукта</td></tr>
-        <tr><td>Backend + AI-интеграция</td><td>🔺🔺 Максимальный</td><td>Комбинация крайне редка и высоко ценится</td></tr>
-        <tr><td>Frontend / Mobile</td><td>→ Средний</td><td>Давление автоматизации на шаблонный код</td></tr>
-        <tr><td>Game Dev</td><td>🔻 Низкий</td><td>Стагнация на российском рынке</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="notice warn">
-    <strong>⚠️ Главный риск к 2030 году</strong>
-    Обычный junior без понимания AI трудно продать на рынке. Побеждают те, кто умеет поставить задачу, спроектировать систему и интегрировать языковую модель в реальный сервис.
-  </div>
-
-  <hr>
-
-  <!-- 1 КУРС -->
-  <div class="section-badge" id="y1">
-    <h2>🏗️ 1 курс — Фундамент (2026 – 2027)</h2>
-    <p class="sub">Цель: написать первые рабочие приложения, не бояться кода</p>
-  </div>
-
-  <h3 class="season">🍂 Осень</h3>
-  <ul class="items">
-    <li><div><strong>SoloLearn Python</strong> — до списков и функций. Stepik «Поколение Python»: if, for, while, задачи каждый день.</div></li>
-    <li><div><strong>SQL с первого семестра:</strong> sql-ex.ru — SELECT, WHERE, GROUP BY. SQL учится быстро и нужен в любой нише.</div></li>
-    <li><div><strong>Английский — 15 минут в день:</strong> читать документацию Python на английском. Не курсы — живая практика. Цель за 4 года: A2 → B2.</div></li>
-    <li><div><strong>Pydroid на телефоне</strong> — задачи в очередях и транспорте.</div></li>
-  </ul>
-
-  <h3 class="season">🌱 Весна</h3>
-  <ul class="items">
-    <li><div><strong>Stepik:</strong> 50+ задач без подсказок — списки, строки, функции.</div></li>
-    <li><div><strong>ООП + первый реальный проект:</strong> консольный менеджер задач с сохранением в SQLite. Не игрушка — рабочая программа.</div></li>
-    <li><div><strong>Git:</strong> commit, push, pull, ветки — всё сразу на GitHub. Без Git прогресса нет.</div></li>
-    <li><div><strong>SQL — продолжение:</strong> JOIN, подзапросы, агрегации на PostgreSQL.</div></li>
-  </ul>
-
-  <h3 class="season">☀️ Лето</h3>
-  <ul class="items">
-    <li><div><strong>Telegram-бот на aiogram</strong> — практика работы с внешним API и асинхронностью. Учебный проект.</div></li>
-    <li><div><strong>Парсер на requests + BeautifulSoup</strong> — понять HTTP изнутри.</div></li>
-    <li><div><strong>Первый REST API на FastAPI</strong> — небольшой: GET/POST, возврат JSON. Важнее бота для понимания бэкенда.</div></li>
-    <li><div><strong>README к каждому проекту</strong> — писать для человека, который видит тебя впервые.</div></li>
-  </ul>
-
-  <div class="notice green">
-    <strong>✅ Результат 1 курса</strong>
-    4 проекта на GitHub: CLI-менеджер, бот, парсер, первый FastAPI. Понимаешь SQL. Читаешь английскую документацию без переводчика.
-  </div>
-
-  <hr>
-
-  <!-- 2 КУРС -->
-  <div class="section-badge" id="y2">
-    <h2>🎓 2 курс — Специализация (2027 – 2028)</h2>
-    <p class="sub">Цель: делать полноценные сервисы и получить стажировку</p>
-  </div>
-
-  <h3 class="season">🍂 Осень</h3>
-  <ul class="items">
-    <li><div><strong>PostgreSQL глубже:</strong> индексы, транзакции, EXPLAIN ANALYZE.</div></li>
-    <li><div><strong>Полноценный API на FastAPI или Django:</strong> авторизация (JWT), валидация (Pydantic), PostgreSQL через SQLAlchemy. CRUD с реальной логикой.</div></li>
-    <li><div><strong>Git — командная работа:</strong> pull request, code review, rebase.</div></li>
-    <li><div><strong>Английский:</strong> статьи dev.to и документацию фреймворков без переводчика.</div></li>
-  </ul>
-
-  <h3 class="season">🌱 Весна</h3>
-  <ul class="items">
-    <li><div><strong>PostgreSQL вручную:</strong> поднять без Docker — столкнуться с проблемами конфигурации.</div></li>
-    <li><div><strong>Docker — после осознания зачем:</strong> когда почувствовал боль ручного деплоя — docker-compose становится решением, а не магией.</div></li>
-    <li><div><strong>Задеплоить проект:</strong> Render или Railway — живая ссылка обязательна. Без деплоя проект не существует.</div></li>
-    <li><div><strong>Резюме + GitHub-профиль:</strong> оформить, опубликовать на hh.ru.</div></li>
-  </ul>
-
-  <div class="notice blue">
-    <strong>📋 Критерии готовности к стажировке — проверь к февралю</strong>
-    • GitHub: 4–5 проектов с README и живыми ссылками<br>
-    • Один проект задеплоен и открывается по URL<br>
-    • Резюме опубликовано на hh.ru<br>
-    • 10–15 откликов каждую неделю — это отдельная задача, не «когда появится настроение»<br>
-    • Целиться в продуктовые компании, не в аутсорс: там реальный code review и рост
-  </div>
-
-  <h3 class="season">☀️ Лето</h3>
-  <ul class="items">
-    <li><div><strong>Стажировка</strong> — нормально получить 30 отказов до первого оффера.</div></li>
-    <li><div><strong>Если стажировки нет:</strong> крупный pet-проект на 2–3 месяца — что-то, чем реально можно пользоваться.</div></li>
-  </ul>
-
-  <div class="notice green">
-    <strong>✅ Результат 2 курса</strong>
-    Junior с портфолио. Понимаешь как работает сервис от HTTP-запроса до БД. Умеешь деплоить. Готов к собеседованиям.
-  </div>
-
-  <hr>
-
-  <!-- 3 КУРС -->
-  <div class="section-badge" id="y3">
-    <h2>📈 3 курс — Продукт с пользователями (2028 – 2029)</h2>
-    <p class="sub">Цель: реальный сервис + коммерческий опыт + AI-интеграция</p>
-  </div>
-
-  <div class="notice blue" style="margin-top:0">
-    <strong>Главная задача курса</strong>
-    Запустить сервис, которым пользуются реальные люди. Даже 20–50 пользователей — это принципиальная разница на собеседовании. Идеи: генератор конспектов, трекер расходов, сервис расписания, бот для одногруппников.
-  </div>
-
-  <h3 class="season">🍂 Осень</h3>
-  <ul class="items">
-    <li><div><strong>Работа / стажировка:</strong> 10–15 часов в неделю — реальный код, code review, дедлайны.</div></li>
-    <li><div><strong>pytest:</strong> написать тесты к своим проектам. Без тестов нет доверия к коду.</div></li>
-    <li><div><strong>Linux:</strong> терминал, SSH, nginx, systemd, логи, права доступа. Учить на живом сервере.</div></li>
-    <li><div><strong>LeetCode — старт:</strong> 1–2 задачи в неделю. Только массивы и хэш-таблицы.</div></li>
-    <li><div><strong>AI-интеграция — старт:</strong> вызвать API языковой модели (YandexGPT или актуальный в 2028). Обернуть в FastAPI-сервис.</div></li>
-  </ul>
-
-  <div class="notice blue">
-    <strong>📌 Почему AI-интеграция важнее классического ML</strong>
-    К 2030 году работодатели спрашивают: умеешь ли ты интегрировать LLM в реальный сервис? Строить RAG? scikit-learn можно изучить попутно — ставить на него основной акцент не стоит.
-  </div>
-
-  <h3 class="season">🌱 Весна</h3>
-  <ul class="items">
-    <li><div><strong>Работа:</strong> уже 15+ часов в неделю.</div></li>
-    <li><div><strong>Облака:</strong> Yandex Cloud или аналог — VPS, S3, базовый мониторинг.</div></li>
-    <li><div><strong>CI/CD:</strong> GitHub Actions — автоматические тесты и деплой при пуше.</div></li>
-    <li><div><strong>AI-интеграция — практика:</strong> RAG-сервис на своих данных. Инструменты оркестрации, актуальные на момент обучения.</div></li>
-    <li><div><strong>LeetCode:</strong> Two Pointers и Sliding Window. 2–3 задачи в неделю.</div></li>
-    <li><div><strong>Системный дизайн:</strong> читать реальные postmortem'ы (Cloudflare, Avito, Яндекс публикуют открыто). Разбирать одну архитектуру письменно в неделю — лучше YouTube-лекций.</div></li>
-    <li><div><strong>Английский:</strong> tech-YouTube без субтитров. Цель: уверенный B1.</div></li>
-  </ul>
-
-  <h3 class="season">☀️ Лето</h3>
-  <ul class="items">
-    <li><div><strong>Коммерческий опыт:</strong> работать дальше.</div></li>
-    <li><div><strong>LeetCode:</strong> Stack и Queue. К концу лета — 40+ решённых задач.</div></li>
-  </ul>
-
-  <div class="notice green">
-    <strong>✅ Результат 3 курса</strong>
-    Junior+. Реальный сервис с пользователями. Понимаешь AI-интеграцию на практике. Уверенный кандидат на backend-позицию.
-  </div>
-
-  <hr>
-
-  <!-- 4 КУРС -->
-  <div class="section-badge" id="y4">
-    <h2>🚀 4 курс — Выход на рынок (2029 – 2030)</h2>
-    <p class="sub">Цель: масштабируемые системы, диплом как продукт, оффер</p>
-  </div>
-
-  <h3 class="season">🍂 Осень</h3>
-  <ul class="items">
-    <li><div><strong>Работа:</strong> 12–15 часов в неделю — расти внутри хорошей компании.</div></li>
-    <li><div><strong>Системный дизайн:</strong> архитектура сервисов, CAP-теорема, очереди, кэширование, балансировка.</div></li>
-    <li><div><strong>LeetCode:</strong> Binary Search и деревья. К зиме — 70+ задач. Графы — последними.</div></li>
-    <li><div><strong>AI-уровень:</strong> fine-tuning, agent-системы, оценка качества моделей. Не привязываться к конкретным библиотекам — ориентироваться на принципы.</div></li>
-    <li><div><strong>Английский:</strong> уверенный B2 — GitHub Issues, RFC, конференции без субтитров.</div></li>
-  </ul>
-
-  <h3 class="season">🌱 Весна</h3>
-  <ul class="items">
-    <li><div><strong>Диплом — реальный продукт:</strong> API + БД + деплой + документация + тесты. Главный экспонат. Идеально — продолжение сервиса с пользователями из 3 курса.</div></li>
-    <li><div><strong>Пробные собеседования:</strong> 5–10 интервью в компаниях куда не очень хочется — только тренировка.</div></li>
-    <li><div><strong>Резюме:</strong> 2+ года опыта, живые ссылки, метрики: «сервис с 50 пользователями», «покрытие тестами 80%».</div></li>
-  </ul>
-
-  <h3 class="season">☀️ После выпуска</h3>
-  <ul class="items">
-    <li><div><strong>Полный рабочий день.</strong> Цель: сильный Junior+ или Middle — в зависимости от компании и темпа роста.</div></li>
-  </ul>
-
-  <div class="notice green">
-    <strong>✅ Результат 4 курса</strong>
-    Диплом + портфолио + 2+ года опыта + сервис с пользователями + понимание AI. Уровень сильного Junior+ или Middle.
-  </div>
-
-  <hr>
-
-  <!-- LEETCODE -->
-  <h1 class="page-title" id="leet">LeetCode: правильная последовательность</h1>
-  <p>Первые три категории закрывают 80% junior/middle собеседований в России. Деревья и графы — в последнюю очередь.</p>
-
-  <div class="leet-grid">
-    <div class="leet-card"><div class="priority" style="color:#DC2626">🔴 Обязательно</div><div class="cat">Массивы</div><div class="meta">3 курс осень · 15+ задач</div></div>
-    <div class="leet-card"><div class="priority" style="color:#DC2626">🔴 Обязательно</div><div class="cat">Hash Map / Hash Set</div><div class="meta">3 курс осень · 10+ задач</div></div>
-    <div class="leet-card"><div class="priority" style="color:#D97706">🟡 Важно</div><div class="cat">Два указателя</div><div class="meta">3 курс весна · 10+ задач</div></div>
-    <div class="leet-card"><div class="priority" style="color:#D97706">🟡 Важно</div><div class="cat">Скользящее окно</div><div class="meta">3 курс весна · 8+ задач</div></div>
-    <div class="leet-card"><div class="priority" style="color:#D97706">🟡 Важно</div><div class="cat">Stack / Queue</div><div class="meta">3 курс лето · 8+ задач</div></div>
-    <div class="leet-card"><div class="priority" style="color:#16A34A">🟢 Нужно</div><div class="cat">Binary Search</div><div class="meta">4 курс осень · 8+ задач</div></div>
-    <div class="leet-card"><div class="priority" style="color:#16A34A">🟢 Нужно</div><div class="cat">Деревья</div><div class="meta">4 курс осень · 10+ задач</div></div>
-    <div class="leet-card"><div class="priority" style="color:#94A3B8">⚪ Последним</div><div class="cat">Графы</div><div class="meta">4 курс зима · по желанию</div></div>
-  </div>
-
-  <hr>
-
-  <!-- ПОРТФОЛИО -->
-  <h1 class="page-title" id="portfolio">Портфолио к выпуску</h1>
-  <p>Минимум 6 проектов. Каждый с README, чистыми коммитами и живой ссылкой где возможно.</p>
-
-  <div class="portfolio">
-    <div class="port-card"><div class="when">1 курс · осень–весна</div><div class="name">CLI-менеджер задач + SQLite</div><div class="desc">ООП, работа с данными</div></div>
-    <div class="port-card"><div class="when">1 курс · лето</div><div class="name">Telegram-бот + парсер</div><div class="desc">API, HTTP, асинхронность</div></div>
-    <div class="port-card"><div class="when">1 курс · лето</div><div class="name">Первый FastAPI</div><div class="desc">REST, JSON, HTTP-методы</div></div>
-    <div class="port-card"><div class="when">2 курс</div><div class="name">Полный API: JWT + БД + деплой</div><div class="desc">Backend от А до Я</div></div>
-    <div class="port-card"><div class="when">3 курс</div><div class="name">Продукт с реальными пользователями</div><div class="desc">Продуктовое мышление</div></div>
-    <div class="port-card"><div class="when">3–4 курс</div><div class="name">AI-сервис: LLM-интеграция или RAG</div><div class="desc">AI на практике</div></div>
-    <div class="port-card"><div class="when">4 курс</div><div class="name">Диплом — масштабируемый сервис</div><div class="desc">Архитектура + тесты + документация</div></div>
-  </div>
-
-  <hr>
-
-  <!-- ЕСЛИ ОТСТАЛ -->
-  <h1 class="page-title" id="rescue">Что делать, если отстал от плана</h1>
-  <p>Жизнь почти никогда не идёт по идеальному плану. Это нормально — важно знать, как реагировать.</p>
-
-  <div class="rescue">
-    <div class="rescue-row"><div class="situation">Не успел SQL к концу 1 курса</div><div class="action">Закрыть пробел до следующего этапа. Не идти дальше с дырой в базе.</div></div>
-    <div class="rescue-row"><div class="situation">Нет стажировки к лету 2 курса</div><div class="action">Крупный pet-проект + продолжать отклики осенью 3 курса.</div></div>
-    <div class="rescue-row"><div class="situation">Месяц без прогресса из-за сессии</div><div class="action">Вернуться к последнему незакрытому шагу. Не пытаться догнать всё сразу.</div></div>
-    <div class="rescue-row"><div class="situation">Docker не понимается</div><div class="action">Отложить. Сначала поднять PostgreSQL вручную — мотивация придёт сама.</div></div>
-    <div class="rescue-row"><div class="situation">LeetCode не идёт</div><div class="action">Вернуться на категорию назад. Прогресс здесь нелинейный — это нормально.</div></div>
-    <div class="rescue-row"><div class="situation">Нет идей для проекта</div><div class="action">Сделать то, что нужно тебе или однокурсникам. 20 пользователей достаточно.</div></div>
-  </div>
-
-  <div class="notice blue">
-    <strong>💤 Про здоровье и долгосрочную дистанцию</strong>
-    Четыре года — марафон, не спринт. Не жертвовать сном ради обучения: год стабильной работы по 1–2 часа в день полезнее месяца по 10 часов с последующим выгоранием. Отдых — часть плана.
-  </div>
-
-  <hr>
-
-  <!-- ПРИНЦИПЫ -->
-  <h1 class="page-title" id="principles">5 железных принципов</h1>
-
-  <div class="principles">
-    <div class="principle">
-      <div class="num">1</div>
-      <div class="principle-body"><strong>1–2 часа в день стабильно</strong><span>Лучше, чем 8 часов в выходной и неделя перерыва. Консистентность бьёт интенсивность.</span></div>
-    </div>
-    <div class="principle">
-      <div class="num">2</div>
-      <div class="principle-body"><strong>Продукт важнее курса</strong><span>Каждый год — что-то рабочее, чем пользуются люди. Нет живого проекта — нет прогресса.</span></div>
-    </div>
-    <div class="principle">
-      <div class="num">3</div>
-      <div class="principle-body"><strong>Английский с первого дня</strong><span>15 минут документации в день. A2 → B2 за 4 года реально без отдельных курсов.</span></div>
-    </div>
-    <div class="principle">
-      <div class="num">4</div>
-      <div class="principle-body"><strong>Стажировка — отдельная задача с февраля 2 курса</strong><span>10–15 откликов каждую неделю. 30 отказов до оффера — нормально.</span></div>
-    </div>
-    <div class="principle">
-      <div class="num">5</div>
-      <div class="principle-body"><strong>LeetCode с 3 курса, по категориям, без спешки</strong><span>Это навык, который не строится за месяц перед собеседованием.</span></div>
+<!-- GLOBAL PROGRESS -->
+<div id="progress" class="progress-panel">
+  <div class="ring-wrap">
+    <svg viewBox="0 0 76 76"><circle class="ring-bg" cx="38" cy="38" r="31"/><circle class="ring-fg" id="globalRing" cx="38" cy="38" r="31"/></svg>
+    <div class="ring-text">
+      <span class="ring-pct" id="globalPct">0%</span>
+      <span class="ring-lbl">готово</span>
     </div>
   </div>
-
-  <div class="notice blue" style="margin-top:24px">
-    <strong>🤖 Про ИИ-инструменты</strong>
-    Используй как наставника: объяснить концепцию, разобрать ошибку, дать обратную связь по коду. Не используй чтобы решать задачи за тебя — на собеседовании это сразу видно.
+  <div class="progress-stats">
+    <div class="progress-title">Общий прогресс</div>
+    <div class="progress-sub" id="progressSub">Начни отмечать выполненные задачи</div>
+    <div class="prog-bar-wrap">
+      <div class="prog-label"><span>Задачи выполнены</span><span id="progressFrac">0 / 0</span></div>
+      <div class="prog-bar"><div class="prog-bar-fill" id="globalBar" style="width:0%"></div></div>
+    </div>
   </div>
+  <div class="progress-meta">
+    <div class="stat-pill"><div class="val" id="statDone">0</div><div class="lbl">выполнено</div></div>
+    <div class="stat-pill"><div class="val" id="statLeft">0</div><div class="lbl">осталось</div></div>
+  </div>
+</div>
+
+<!-- YEAR BARS -->
+<div class="year-progress-row" id="yearBars">
+  <div class="year-prog-card">
+    <div class="year-prog-top"><span class="year-prog-title">🏗️ 1 курс</span><span class="year-prog-pct" id="y1pct">0%</span></div>
+    <div class="year-prog-bar"><div class="year-prog-fill" id="y1bar" style="width:0%"></div></div>
+  </div>
+  <div class="year-prog-card">
+    <div class="year-prog-top"><span class="year-prog-title">🎓 2 курс</span><span class="year-prog-pct" id="y2pct">0%</span></div>
+    <div class="year-prog-bar"><div class="year-prog-fill" id="y2bar" style="width:0%"></div></div>
+  </div>
+  <div class="year-prog-card">
+    <div class="year-prog-top"><span class="year-prog-title">📈 3 курс</span><span class="year-prog-pct" id="y3pct">0%</span></div>
+    <div class="year-prog-bar"><div class="year-prog-fill" id="y3bar" style="width:0%"></div></div>
+  </div>
+  <div class="year-prog-card">
+    <div class="year-prog-top"><span class="year-prog-title">🚀 4 курс</span><span class="year-prog-pct" id="y4pct">0%</span></div>
+    <div class="year-prog-bar"><div class="year-prog-fill" id="y4bar" style="width:0%"></div></div>
+  </div>
+</div>
+
+<div class="notice warn">
+  <strong>📌 Это ориентир, а не расписание поездов</strong>
+  Какой-то проект бросишь. Docker поймёшь не с первого раза. Стажировку найдёшь со второй попытки. Это нормально. Важнее сохранять последовательность и двигаться вперёд.
+</div>
+
+<!-- ИДЕЯ -->
+<h1 class="pt" id="idea">Главная идея: делать продукты, а не учить технологии</h1>
+<p style="color:var(--muted);font-size:14px;margin-bottom:16px">К 2030 году ИИ пишет шаблонный код за секунды. Каждый год — не «выучить технологию», а сделать продукт.</p>
+<div class="goal-grid">
+  <div class="goal-card"><div class="goal-yr">01</div><div class="goal-txt"><strong>1 курс</strong><span>Первые рабочие приложения — не бояться кода</span></div></div>
+  <div class="goal-card"><div class="goal-yr">02</div><div class="goal-txt"><strong>2 курс</strong><span>Полноценные сервисы — получить стажировку</span></div></div>
+  <div class="goal-card"><div class="goal-yr">03</div><div class="goal-txt"><strong>3 курс</strong><span>Продукт с реальными пользователями + AI-интеграция</span></div></div>
+  <div class="goal-card"><div class="goal-yr">04</div><div class="goal-txt"><strong>4 курс</strong><span>Масштабируемые системы + собеседования</span></div></div>
+</div>
+
+<hr>
+
+<!-- 1 КУРС -->
+<div class="section-badge" id="y1">
+  <div class="section-badge-top">
+    <div>
+      <h2>🏗️ 1 курс — Фундамент (2026–2027)</h2>
+      <p class="sub">Цель: написать первые рабочие приложения, не бояться кода</p>
+    </div>
+    <div class="section-ring">
+      <div class="section-ring-inner">
+        <svg viewBox="0 0 50 50"><circle class="sr-bg" cx="25" cy="25" r="20"/><circle class="sr-fg" id="sr1" cx="25" cy="25" r="20"/></svg>
+        <div class="section-ring-pct" id="srp1">0%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 class="season">🍂 Осень 2026</h3>
+<div class="task-list" data-year="y1">
+  <div class="task-item" data-id="t1"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>SoloLearn Python</strong> — до списков и функций</div></div>
+  <div class="task-item" data-id="t2"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Stepik «Поколение Python»</strong> — if, for, while, задачи каждый день</div></div>
+  <div class="task-item" data-id="t3"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>SQL с первого семестра</strong> — sql-ex.ru, SELECT, WHERE, GROUP BY</div></div>
+  <div class="task-item" data-id="t4"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Английский — 15 мин в день:</strong> читать документацию Python на английском</div></div>
+  <div class="task-item" data-id="t5"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Pydroid на телефоне</strong> — задачи в очередях и транспорте</div></div>
+</div>
+
+<h3 class="season">🌱 Весна 2027</h3>
+<div class="task-list" data-year="y1">
+  <div class="task-item" data-id="t6"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Stepik</strong> — 50+ задач без подсказок: списки, строки, функции</div></div>
+  <div class="task-item" data-id="t7"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>ООП + CLI-менеджер задач</strong> — классы, наследование, сохранение в SQLite</div></div>
+  <div class="task-item" data-id="t8"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Git на GitHub</strong> — commit, push, pull, ветки. Без Git прогресса нет</div></div>
+  <div class="task-item" data-id="t9"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>SQL — продолжение</strong> — JOIN, подзапросы, агрегации на PostgreSQL</div></div>
+</div>
+
+<h3 class="season">☀️ Лето 2027</h3>
+<div class="task-list" data-year="y1">
+  <div class="task-item" data-id="t10"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Telegram-бот на aiogram</strong> — практика работы с внешним API и асинхронностью</div></div>
+  <div class="task-item" data-id="t11"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Парсер</strong> на requests + BeautifulSoup — понять HTTP изнутри</div></div>
+  <div class="task-item" data-id="t12"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Первый REST API на FastAPI</strong> — GET/POST, возврат JSON, живая ссылка</div></div>
+  <div class="task-item" data-id="t13"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>README к каждому проекту</strong> — писать для человека, который видит тебя впервые</div></div>
+</div>
+
+<div class="notice green"><strong>✅ Результат 1 курса</strong>4 проекта на GitHub: CLI, бот, парсер, FastAPI. Понимаешь SQL. Читаешь документацию на английском.</div>
+<hr>
+
+<!-- 2 КУРС -->
+<div class="section-badge" id="y2">
+  <div class="section-badge-top">
+    <div>
+      <h2>🎓 2 курс — Специализация (2027–2028)</h2>
+      <p class="sub">Цель: делать полноценные сервисы и получить стажировку</p>
+    </div>
+    <div class="section-ring">
+      <div class="section-ring-inner">
+        <svg viewBox="0 0 50 50"><circle class="sr-bg" cx="25" cy="25" r="20"/><circle class="sr-fg" id="sr2" cx="25" cy="25" r="20"/></svg>
+        <div class="section-ring-pct" id="srp2">0%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 class="season">🍂 Осень 2027</h3>
+<div class="task-list" data-year="y2">
+  <div class="task-item" data-id="t14"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>PostgreSQL глубже</strong> — индексы, транзакции, EXPLAIN ANALYZE</div></div>
+  <div class="task-item" data-id="t15"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Полноценный API на FastAPI/Django</strong> — JWT, Pydantic, SQLAlchemy + PostgreSQL</div></div>
+  <div class="task-item" data-id="t16"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Git — командная работа</strong> — pull request, code review, rebase</div></div>
+  <div class="task-item" data-id="t17"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Английский</strong> — статьи dev.to и документацию фреймворков без переводчика</div></div>
+</div>
+
+<h3 class="season">🌱 Весна 2028</h3>
+<div class="task-list" data-year="y2">
+  <div class="task-item" data-id="t18"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>PostgreSQL вручную</strong> — поднять без Docker, столкнуться с проблемами конфигурации</div></div>
+  <div class="task-item" data-id="t19"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Docker — после осознания зачем</strong> — docker-compose, образы, переменные окружения</div></div>
+  <div class="task-item" data-id="t20"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Задеплоить проект</strong> — Render или Railway, живая ссылка обязательна</div></div>
+  <div class="task-item" data-id="t21"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Резюме + GitHub-профиль</strong> — оформить и опубликовать на hh.ru</div></div>
+  <div class="task-item" data-id="t22"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>10–15 откликов в неделю</strong> — начиная с февраля, это отдельная задача</div></div>
+</div>
+
+<h3 class="season">☀️ Лето 2028</h3>
+<div class="task-list" data-year="y2">
+  <div class="task-item" data-id="t23"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Стажировка получена</strong> или крупный pet-проект на 2–3 месяца</div></div>
+</div>
+
+<div class="notice green"><strong>✅ Результат 2 курса</strong>Junior с портфолио. Понимаешь сервис от HTTP до БД. Умеешь деплоить. Готов к собеседованиям.</div>
+<hr>
+
+<!-- 3 КУРС -->
+<div class="section-badge" id="y3">
+  <div class="section-badge-top">
+    <div>
+      <h2>📈 3 курс — Продукт с пользователями (2028–2029)</h2>
+      <p class="sub">Цель: реальный сервис + коммерческий опыт + AI-интеграция</p>
+    </div>
+    <div class="section-ring">
+      <div class="section-ring-inner">
+        <svg viewBox="0 0 50 50"><circle class="sr-bg" cx="25" cy="25" r="20"/><circle class="sr-fg" id="sr3" cx="25" cy="25" r="20"/></svg>
+        <div class="section-ring-pct" id="srp3">0%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="notice blue" style="margin-top:0"><strong>Главная задача курса</strong>Запустить сервис с реальными пользователями. 20–50 человек — уже огромная разница на собеседовании.</div>
+
+<h3 class="season">🍂 Осень 2028</h3>
+<div class="task-list" data-year="y3">
+  <div class="task-item" data-id="t24"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Работа / стажировка</strong> — 10–15 часов в неделю, реальный код и дедлайны</div></div>
+  <div class="task-item" data-id="t25"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>pytest</strong> — написать тесты к своим проектам</div></div>
+  <div class="task-item" data-id="t26"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Linux</strong> — SSH, nginx, systemd, логи, права доступа на живом сервере</div></div>
+  <div class="task-item" data-id="t27"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>LeetCode старт</strong> — массивы и Hash Map, 1–2 задачи в неделю</div></div>
+  <div class="task-item" data-id="t28"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>AI-интеграция старт</strong> — вызвать API языковой модели, обернуть в FastAPI-сервис</div></div>
+</div>
+
+<h3 class="season">🌱 Весна 2029</h3>
+<div class="task-list" data-year="y3">
+  <div class="task-item" data-id="t29"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Работа 15+ часов</strong> — углубляться в фреймворк и архитектуру</div></div>
+  <div class="task-item" data-id="t30"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Облака</strong> — Yandex Cloud или аналог, VPS, S3, базовый мониторинг</div></div>
+  <div class="task-item" data-id="t31"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>CI/CD</strong> — GitHub Actions, авто-тесты и деплой при пуше</div></div>
+  <div class="task-item" data-id="t32"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>RAG-сервис</strong> — поиск по собственным данным с LLM</div></div>
+  <div class="task-item" data-id="t33"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>LeetCode</strong> — Two Pointers и Sliding Window, 2–3 задачи в неделю</div></div>
+  <div class="task-item" data-id="t34"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Системный дизайн</strong> — читать postmortem'ы Cloudflare, Avito, Яндекс. Разбирать 1 архитектуру в неделю письменно</div></div>
+</div>
+
+<h3 class="season">☀️ Лето 2029</h3>
+<div class="task-list" data-year="y3">
+  <div class="task-item" data-id="t35"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Продукт с 20–50 пользователями</strong> — запущен и работает</div></div>
+  <div class="task-item" data-id="t36"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>LeetCode</strong> — Stack и Queue, к концу лета 40+ задач</div></div>
+</div>
+
+<div class="notice green"><strong>✅ Результат 3 курса</strong>Junior+. Реальный сервис с пользователями. AI-интеграция на практике. Уверенный кандидат на backend.</div>
+<hr>
+
+<!-- 4 КУРС -->
+<div class="section-badge" id="y4">
+  <div class="section-badge-top">
+    <div>
+      <h2>🚀 4 курс — Выход на рынок (2029–2030)</h2>
+      <p class="sub">Цель: масштабируемые системы, диплом как продукт, оффер</p>
+    </div>
+    <div class="section-ring">
+      <div class="section-ring-inner">
+        <svg viewBox="0 0 50 50"><circle class="sr-bg" cx="25" cy="25" r="20"/><circle class="sr-fg" id="sr4" cx="25" cy="25" r="20"/></svg>
+        <div class="section-ring-pct" id="srp4">0%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 class="season">🍂 Осень 2029</h3>
+<div class="task-list" data-year="y4">
+  <div class="task-item" data-id="t37"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Работа 12–15 часов</strong> — расти внутри хорошей компании</div></div>
+  <div class="task-item" data-id="t38"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Системный дизайн</strong> — CAP-теорема, очереди (Kafka), кэширование, балансировка</div></div>
+  <div class="task-item" data-id="t39"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>LeetCode</strong> — Binary Search и деревья. К зиме — 70+ задач</div></div>
+  <div class="task-item" data-id="t40"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>AI-уровень</strong> — fine-tuning, agent-системы, оценка качества моделей (принципы, не библиотеки)</div></div>
+  <div class="task-item" data-id="t41"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Английский B2</strong> — GitHub Issues, RFC, конференции без субтитров</div></div>
+</div>
+
+<h3 class="season">🌱 Весна 2030</h3>
+<div class="task-list" data-year="y4">
+  <div class="task-item" data-id="t42"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Диплом — реальный продукт</strong> — API + БД + деплой + тесты + документация</div></div>
+  <div class="task-item" data-id="t43"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>5–10 пробных собеседований</strong> — в компаниях куда не очень хочется, только тренировка</div></div>
+  <div class="task-item" data-id="t44"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Финальное резюме</strong> — 2+ года опыта, метрики, живые ссылки</div></div>
+  <div class="task-item" data-id="t45"><div class="task-check"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></div><div class="task-text"><strong>Оффер получен</strong> — сильный Junior+ или Middle 🎉</div></div>
+</div>
+
+<div class="notice green"><strong>✅ Результат 4 курса</strong>Диплом + портфолио + 2+ года опыта + сервис с пользователями + AI. Уровень сильного Junior+ или Middle.</div>
+<hr>
+
+<!-- LEETCODE -->
+<h1 class="pt" id="leet">LeetCode: правильная последовательность</h1>
+<p style="color:var(--muted);font-size:14px;margin-bottom:16px">Первые три категории — 80% junior/middle собеседований в России. Графы — последними.</p>
+<div class="leet-grid">
+  <div class="leet-card"><div class="leet-priority" style="color:#F87171">🔴 Обязательно</div><div class="leet-cat">Массивы</div><div class="leet-meta">3 курс осень · 15+ задач</div></div>
+  <div class="leet-card"><div class="leet-priority" style="color:#F87171">🔴 Обязательно</div><div class="leet-cat">Hash Map / Hash Set</div><div class="leet-meta">3 курс осень · 10+ задач</div></div>
+  <div class="leet-card"><div class="leet-priority" style="color:#FCD34D">🟡 Важно</div><div class="leet-cat">Два указателя</div><div class="leet-meta">3 курс весна · 10+ задач</div></div>
+  <div class="leet-card"><div class="leet-priority" style="color:#FCD34D">🟡 Важно</div><div class="leet-cat">Скользящее окно</div><div class="leet-meta">3 курс весна · 8+ задач</div></div>
+  <div class="leet-card"><div class="leet-priority" style="color:#FCD34D">🟡 Важно</div><div class="leet-cat">Stack / Queue</div><div class="leet-meta">3 курс лето · 8+ задач</div></div>
+  <div class="leet-card"><div class="leet-priority" style="color:#86EFAC">🟢 Нужно</div><div class="leet-cat">Binary Search</div><div class="leet-meta">4 курс осень · 8+ задач</div></div>
+  <div class="leet-card"><div class="leet-priority" style="color:#86EFAC">🟢 Нужно</div><div class="leet-cat">Деревья</div><div class="leet-meta">4 курс осень · 10+ задач</div></div>
+  <div class="leet-card"><div class="leet-priority" style="color:#94A3B8">⚪ Последним</div><div class="leet-cat">Графы</div><div class="leet-meta">4 курс зима · по желанию</div></div>
+</div>
+<hr>
+
+<!-- ПОРТФОЛИО -->
+<h1 class="pt" id="portfolio">Портфолио к выпуску</h1>
+<p style="color:var(--muted);font-size:14px;margin-bottom:16px">Минимум 6 проектов с README, чистыми коммитами и живыми ссылками.</p>
+<div class="portfolio">
+  <div class="port-card"><div class="port-when">1 курс · осень–весна</div><div class="port-name">CLI-менеджер задач + SQLite</div><div class="port-desc">ООП, работа с данными</div></div>
+  <div class="port-card"><div class="port-when">1 курс · лето</div><div class="port-name">Telegram-бот + парсер</div><div class="port-desc">API, HTTP, асинхронность</div></div>
+  <div class="port-card"><div class="port-when">1 курс · лето</div><div class="port-name">Первый FastAPI</div><div class="port-desc">REST, JSON, HTTP-методы</div></div>
+  <div class="port-card"><div class="port-when">2 курс</div><div class="port-name">Полный API: JWT + БД + деплой</div><div class="port-desc">Backend от А до Я</div></div>
+  <div class="port-card"><div class="port-when">3 курс</div><div class="port-name">Продукт с реальными пользователями</div><div class="port-desc">Продуктовое мышление</div></div>
+  <div class="port-card"><div class="port-when">3–4 курс</div><div class="port-name">AI-сервис: LLM или RAG</div><div class="port-desc">AI-интеграция на практике</div></div>
+  <div class="port-card"><div class="port-when">4 курс</div><div class="port-name">Диплом — масштабируемый сервис</div><div class="port-desc">Архитектура + тесты + документация</div></div>
+</div>
+<hr>
+
+<!-- ЕСЛИ ОТСТАЛ -->
+<h1 class="pt" id="rescue">Что делать, если отстал от плана</h1>
+<div class="rescue">
+  <div class="rescue-row"><div class="rescue-situation">Не успел SQL к концу 1 курса</div><div class="rescue-action">Закрыть пробел до следующего этапа. Не идти дальше с дырой в базе.</div></div>
+  <div class="rescue-row"><div class="rescue-situation">Нет стажировки к лету 2 курса</div><div class="rescue-action">Крупный pet-проект + продолжать отклики осенью 3 курса.</div></div>
+  <div class="rescue-row"><div class="rescue-situation">Месяц без прогресса из-за сессии</div><div class="rescue-action">Вернуться к последнему незакрытому шагу. Не пытаться догнать всё сразу.</div></div>
+  <div class="rescue-row"><div class="rescue-situation">Docker не понимается</div><div class="rescue-action">Отложить. Сначала поднять PostgreSQL вручную — мотивация придёт сама.</div></div>
+  <div class="rescue-row"><div class="rescue-situation">LeetCode не идёт</div><div class="rescue-action">Вернуться на категорию назад. Прогресс нелинейный — это нормально.</div></div>
+  <div class="rescue-row"><div class="rescue-situation">Нет идей для проекта</div><div class="rescue-action">Сделать то, что нужно тебе или однокурсникам. 20 пользователей достаточно.</div></div>
+</div>
+<div class="notice blue"><strong>💤 Про здоровье и долгосрочную дистанцию</strong>Четыре года — марафон, не спринт. Год стабильной работы по 1–2 часа в день полезнее месяца по 10 часов с последующим выгоранием.</div>
+<hr>
+
+<!-- ПРИНЦИПЫ -->
+<h1 class="pt" id="principles">5 железных принципов</h1>
+<div class="principles">
+  <div class="principle"><div class="prin-num">1</div><div><span class="prin-strong">1–2 часа в день стабильно</span><span class="prin-rest">Лучше, чем 8 часов в выходной и неделя перерыва. Консистентность бьёт интенсивность.</span></div></div>
+  <div class="principle"><div class="prin-num">2</div><div><span class="prin-strong">Продукт важнее курса</span><span class="prin-rest">Каждый год — что-то рабочее, чем пользуются люди. Нет живого проекта — нет прогресса.</span></div></div>
+  <div class="principle"><div class="prin-num">3</div><div><span class="prin-strong">Английский с первого дня</span><span class="prin-rest">15 минут документации в день. A2 → B2 за 4 года реально без отдельных курсов.</span></div></div>
+  <div class="principle"><div class="prin-num">4</div><div><span class="prin-strong">Стажировка — отдельная задача с февраля 2 курса</span><span class="prin-rest">10–15 откликов каждую неделю. 30 отказов до оффера — нормально.</span></div></div>
+  <div class="principle"><div class="prin-num">5</div><div><span class="prin-strong">LeetCode с 3 курса, по категориям, без спешки</span><span class="prin-rest">Это навык, который не строится за месяц перед собеседованием.</span></div></div>
+</div>
+<div class="notice blue" style="margin-top:20px"><strong>🤖 Про ИИ-инструменты</strong>Используй как наставника: объяснить концепцию, разобрать ошибку, дать обратную связь по коду. Не давай ему решать задачи за тебя — на собеседовании это сразу видно.</div>
+
+<div class="reset-wrap">
+  <button class="btn-reset" onclick="resetProgress()">🗑 Сбросить весь прогресс</button>
+</div>
 
 </main>
-
-<footer>
-  Версия 4.0 · Пересматривать раз в полгода · 2026–2030
-</footer>
+<footer>Версия 4.0 · Пересматривать раз в полгода · 2026–2030 · Прогресс сохраняется в браузере</footer>
 
 <script>
-  // Active nav highlight on scroll
-  const sections = document.querySelectorAll('[id]');
-  const navLinks = document.querySelectorAll('nav a');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
-        if (active) active.classList.add('active');
+// ── STORAGE KEY ───────────────────────────────────────────
+const KEY = 'roadmap_v4_progress';
+
+// ── YEAR TASK MAPPING ─────────────────────────────────────
+const YEAR_MAP = {
+  y1: ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11','t12','t13'],
+  y2: ['t14','t15','t16','t17','t18','t19','t20','t21','t22','t23'],
+  y3: ['t24','t25','t26','t27','t28','t29','t30','t31','t32','t33','t34','t35','t36'],
+  y4: ['t37','t38','t39','t40','t41','t42','t43','t44','t45'],
+};
+const ALL_TASKS = Object.values(YEAR_MAP).flat();
+
+// ── STATE ─────────────────────────────────────────────────
+let done = new Set();
+
+function load() {
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) done = new Set(JSON.parse(raw));
+  } catch(e) { done = new Set(); }
+}
+
+function save() {
+  localStorage.setItem(KEY, JSON.stringify([...done]));
+}
+
+// ── RENDER ────────────────────────────────────────────────
+function render() {
+  // Task items
+  document.querySelectorAll('.task-item').forEach(el => {
+    const id = el.dataset.id;
+    el.classList.toggle('done', done.has(id));
+  });
+
+  // Global progress
+  const total = ALL_TASKS.length;
+  const completed = ALL_TASKS.filter(id => done.has(id)).length;
+  const pct = total ? Math.round(completed / total * 100) : 0;
+
+  document.getElementById('globalPct').textContent = pct + '%';
+  document.getElementById('globalBar').style.width = pct + '%';
+  document.getElementById('progressFrac').textContent = `${completed} / ${total}`;
+  document.getElementById('statDone').textContent = completed;
+  document.getElementById('statLeft').textContent = total - completed;
+
+  const msgs = ['Начни отмечать выполненные задачи','Отличный старт! Продолжай в том же темпе','Четверть пути позади — это уже реальный прогресс','Половина сделана. Ты серьёзно идёшь к цели','Три четверти! Финишная прямая близко','Roadmap завершён. Ты сделал это 🎉'];
+  const idx = pct >= 100 ? 5 : Math.floor(pct / 20);
+  document.getElementById('progressSub').textContent = msgs[idx];
+
+  // Global ring: circumference = 2π×31 ≈ 195
+  const circ = 2 * Math.PI * 31;
+  const offset = circ - (pct / 100) * circ;
+  const ring = document.getElementById('globalRing');
+  ring.style.strokeDasharray = circ;
+  ring.style.strokeDashoffset = offset;
+  ring.style.stroke = pct >= 100 ? '#22C55E' : pct >= 50 ? '#60A5FA' : '#3B82F6';
+
+  // Year rings & bars
+  ['y1','y2','y3','y4'].forEach((yr, i) => {
+    const ids = YEAR_MAP[yr];
+    const ydone = ids.filter(id => done.has(id)).length;
+    const ypct = ids.length ? Math.round(ydone / ids.length * 100) : 0;
+
+    // Mini bar
+    const n = i + 1;
+    document.getElementById(`y${n}pct`).textContent = ypct + '%';
+    document.getElementById(`y${n}bar`).style.width = ypct + '%';
+
+    // Section ring: circumference = 2π×20 ≈ 125.7
+    const sc = 2 * Math.PI * 20;
+    const so = sc - (ypct / 100) * sc;
+    const sr = document.getElementById(`sr${n}`);
+    if (sr) {
+      sr.style.strokeDasharray = sc;
+      sr.style.strokeDashoffset = so;
+    }
+    const sp = document.getElementById(`srp${n}`);
+    if (sp) sp.textContent = ypct + '%';
+  });
+}
+
+// ── TOGGLE TASK ───────────────────────────────────────────
+let prevYearPcts = {y1:0,y2:0,y3:0,y4:0};
+
+function getYearPct(yr) {
+  const ids = YEAR_MAP[yr];
+  const d = ids.filter(id => done.has(id)).length;
+  return ids.length ? Math.round(d / ids.length * 100) : 0;
+}
+
+function toggle(el) {
+  const id = el.dataset.id;
+  // Find which year this task belongs to
+  const yr = Object.keys(YEAR_MAP).find(y => YEAR_MAP[y].includes(id));
+
+  const wasDone = done.has(id);
+  const prevPct = yr ? getYearPct(yr) : 0;
+
+  if (wasDone) {
+    done.delete(id);
+  } else {
+    done.add(id);
+  }
+
+  save();
+  render();
+
+  if (!wasDone) {
+    // Check if year just hit 100%
+    if (yr) {
+      const newPct = getYearPct(yr);
+      if (newPct === 100 && prevPct < 100) {
+        const labels = {y1:'1 курс',y2:'2 курс',y3:'3 курс',y4:'4 курс'};
+        confetti();
+        showToast(`🎉 ${labels[yr]} завершён!`);
       }
-    });
-  }, { rootMargin: '-30% 0px -60% 0px' });
-  sections.forEach(s => obs.observe(s));
+    }
+    // Check global 100%
+    const total = ALL_TASKS.length;
+    const completed = ALL_TASKS.filter(i => done.has(i)).length;
+    if (completed === total) {
+      setTimeout(()=>{ confetti(); confetti(); showToast('🏆 Roadmap пройден полностью! Ты сделал это!'); }, 300);
+    }
+  }
+}
+
+// ── CONFETTI ──────────────────────────────────────────────
+function confetti() {
+  const colors = ['#3B82F6','#60A5FA','#22C55E','#F59E0B','#A78BFA','#F472B6'];
+  for (let i = 0; i < 60; i++) {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'confetti-piece';
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.top = '-10px';
+      el.style.background = colors[Math.floor(Math.random() * colors.length)];
+      el.style.transform = `rotate(${Math.random()*360}deg)`;
+      el.style.animationDuration = (1.2 + Math.random() * 1.2) + 's';
+      el.style.animationDelay = (Math.random() * .5) + 's';
+      el.style.width = el.style.height = (6 + Math.random() * 6) + 'px';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 3000);
+    }, i * 18);
+  }
+}
+
+// ── TOAST ─────────────────────────────────────────────────
+let toastTimeout;
+function showToast(msg) {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  clearTimeout(toastTimeout);
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  toastTimeout = setTimeout(() => {
+    t.classList.add('hide');
+    setTimeout(() => t.remove(), 350);
+  }, 3500);
+}
+
+// ── RESET ─────────────────────────────────────────────────
+function resetProgress() {
+  if (confirm('Сбросить весь прогресс? Это действие необратимо.')) {
+    done.clear();
+    save();
+    render();
+    showToast('Прогресс сброшен');
+  }
+}
+
+// ── NAV ACTIVE ────────────────────────────────────────────
+const navLinks = document.querySelectorAll('nav a');
+const sections = document.querySelectorAll('[id]');
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, {rootMargin:'-20% 0px -70% 0px'}).observe && sections.forEach(s => {
+  new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`nav a[href="#${entries[0].target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  }, {rootMargin:'-20% 0px -70% 0px'}).observe(s);
+});
+
+// ── CLICK HANDLERS ────────────────────────────────────────
+document.querySelectorAll('.task-item').forEach(el => {
+  el.addEventListener('click', () => toggle(el));
+});
+
+// ── INIT ──────────────────────────────────────────────────
+load();
+render();
 </script>
 </body>
 </html>
